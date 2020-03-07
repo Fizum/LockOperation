@@ -11,15 +11,19 @@ namespace Aumento
     {
         static void Main(string[] args)
         {
+            object obj = new object();
             int n = 0;
 
             for (int i = 0; i < 5; i++)
             {
                 Task th=new Task(() =>
                 {
-                    n++;
-                    Thread.Sleep(1);
-                    Console.WriteLine($"n: {n}");
+                    //lock (obj)
+                    {
+                        n++;
+                        Thread.Sleep(1);
+                        Console.WriteLine($"n: {n}"); 
+                    }
                 });
                 th.Start();
             }
